@@ -1,0 +1,6 @@
+= Custom user fields - Redmine Plugin
+
+== Feature
+
+* Add 'Role of' to custom filed of user type.
+
