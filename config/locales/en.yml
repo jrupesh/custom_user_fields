@@ -1,0 +1,6 @@
+# English strings go here for Rails i18n
+en:
+  # my_label: "My label"
+  role_of: Role of
+  group_of: Group of
+

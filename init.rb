@@ -3,7 +3,7 @@ require 'redmine'
 Redmine::Plugin.register :custom_user_fields do
   name 'Redmine custom user field plugin'
   author 'Zhang Fan'
-  description 'Add \'Role of\' to custom filed of user type.'
+  description 'Add \'Role of\' and \'Group of\' to custom filed of user type.'
   version '0.1.0'
   url 'http://web.4399.com'
   author_url 'mailto:zhangfan@4399.net'
@@ -16,8 +16,8 @@ class UserFieldHook < Redmine::Hook::ViewListener
 		custom_field = param[:custom_field]
 		return unless custom_field.field_format == 'user'
 		f = param[:form]
-		str = f.select :role_of, [['All', '0']] + Role.all.collect{|g| [g.to_s, g.id.to_s]}, :label => 'Role of'
-		str1 = f.select :group_of, [['None', '0']] + Group.all.collect{|g| [g.to_s, g.id.to_s]}, :label => 'Group of'
+		str = f.select :role_of, [['All', '0']] + Role.all.collect{|g| [g.to_s, g.id.to_s]}, :label => l(:role_of)
+		str1 = f.select :group_of, [['None', '0']] + Group.all.collect{|g| [g.to_s, g.id.to_s]}, :label => l(:group_of)
 		"<p>#{str}</p><p>#{str1}</p>"
 	end
 	
