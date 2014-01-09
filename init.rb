@@ -2,11 +2,12 @@ require 'redmine'
 
 Redmine::Plugin.register :custom_user_fields do
   name 'Redmine custom user field plugin'
-  author 'Zhang Fan'
-  description 'Add \'Role of\' and \'Group of\' to custom filed of user type.'
+  author 'Rupesh J'
+  description 'Add \'Role of\' and \'Group of\' to custom filed of user type.
+  						Note : Initial \"Role of\" feature is forked from zhangfan'
   version '0.1.0'
-  url 'http://web.4399.com'
-  author_url 'mailto:zhangfan@4399.net'
+  # url 'http://web.4399.com'
+  # author_url 'mailto:zhangfan@4399.net'
   requires_redmine :version_or_higher => '2.0.0'
 end
 
@@ -39,6 +40,7 @@ RedmineApp::Application.config.after_initialize do
 		end
 
 		def role_of=(arg)
+			return if arg == '0'
 			self.possible_values = "{ \"role\" => #{arg} }" if field_format == 'user'
 		end
 
@@ -50,6 +52,7 @@ RedmineApp::Application.config.after_initialize do
 		end
 
 		def group_of=(arg)
+			return if arg == '0'
 			self.possible_values = "{ \"group\" => #{arg} }" if field_format == 'user'
 		end
 		
