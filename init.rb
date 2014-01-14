@@ -5,9 +5,8 @@ Redmine::Plugin.register :custom_user_fields do
   author 'Rupesh J'
   description 'Add \'Role of\' and \'Group of\' to custom filed of user type.
   						Note : Initial \"Role of\" feature is forked from zhangfan'
-  version '0.1.0'
-  # url 'http://web.4399.com'
-  # author_url 'mailto:zhangfan@4399.net'
+  version '0.1.1'
+  author_url 'mailto:rupeshj@esi-group.com'
   requires_redmine :version_or_higher => '2.0.0'
 end
 
