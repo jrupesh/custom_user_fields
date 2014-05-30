@@ -2,14 +2,31 @@ module CustomFieldsPlugin
   module Patches
 		module CustomFieldPatch
 	    def self.included(base)
-	    	base.send(:include, InstanceMethods)
+	    	if Redmine::VERSION.to_s < "2.5"
+	    		base.send(:include, InstanceMethods24)
+	    	end
+	    	base.send(:include, InstanceMethods25)
 	      base.class_eval do
           unloadable
-	      	alias_method_chain :possible_values_options, :role
+      		alias_method_chain :possible_values_options, :role if Redmine::VERSION.to_s < "2.5"
 				end
 			end
 
-      module InstanceMethods
+			module InstanceMethods25
+				def group_of
+					return nil if field_format != 'user'
+					bt = read_attribute(:possible_values)
+					return bt unless bt.is_a?(Array)
+					eval(bt[0])["group"]
+				end
+
+				def group_of=(arg)
+					return if arg == '0'
+					self.possible_values = "{ \"group\" => #{arg} }" if field_format == 'user'
+				end
+			end
+
+      module InstanceMethods24
 				def role_of
 					return nil if field_format != 'user'
 					bt = read_attribute(:possible_values)
@@ -22,18 +39,6 @@ module CustomFieldsPlugin
 					self.possible_values = "{ \"role\" => #{arg} }" if field_format == 'user'
 				end
 
-				def group_of
-					return nil if field_format != 'user'
-					bt = read_attribute(:possible_values)
-					return bt unless bt.is_a?(Array)
-					eval(bt[0])["group"]
-				end
-
-				def group_of=(arg)
-					return if arg == '0'
-					self.possible_values = "{ \"group\" => #{arg} }" if field_format == 'user'
-				end
-				
 				def possible_values_options_with_role(obj=nil)
 
 					return possible_values_options_without_role(obj) unless field_format == 'user' && obj.respond_to?(:project) && obj.project
