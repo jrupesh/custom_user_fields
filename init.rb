@@ -1,10 +1,10 @@
 require 'redmine'
 
-if Redmine::VERSION.to_s <= "2.5"
-  require_dependency 'custom_fields_plugin/hooks/custom_field_hook'
-  require_dependency 'custom_field'
-  CustomField.send(:include, CustomFieldsPlugin::Patches::CustomFieldPatch)
-end
+require_dependency 'custom_fields_plugin/hooks/custom_field_hook'
+require_dependency 'custom_field'
+CustomField.send(:include, CustomFieldsPlugin::Patches::CustomFieldPatch)
+
+require 'custom_fields_plugin/patches/user_format_patch' if Redmine::VERSION.to_s >= "2.5"
 
 Redmine::Plugin.register :custom_user_fields do
   name 'Redmine custom user field plugin'

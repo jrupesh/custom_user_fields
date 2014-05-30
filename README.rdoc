@@ -2,13 +2,8 @@
 
 == Feature
 
-* Add 'Role of' to custom filed of user type.
 * Add 'Group of' to custom filed of user type.
 
 The custom field can be defined by either of the above options.
 
 ----------
-
-Extension of plugin from fan zhang
-Website:	https://github.com/fanzai0403/custom_user_fields
-Code repository:	https://github.com/fanzai0403/custom_user_fields
