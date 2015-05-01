@@ -1,7 +1,6 @@
 # English strings go here for Rails i18n
 en:
   # my_label: "My label"
-  role_of: Role of
-  group_of: Group of
+  label_group_of: Group of
   user_role_group_option: Options- Select any one of the below - Either "Role" or "Group".
 

@@ -18,7 +18,7 @@ module CustomFieldsPlugin
 						users = obj.project.users
 						group = Group.find(custom_field.group_of)
             if !group.nil?
-  						users = group.users.select { |u| users.include?(u) } 
+  						users = group.users.select { |u| users.include?(u) }
   						return users.sort.collect{ |u| [u.to_s, u.id.to_s] }
             end
 					end
@@ -28,5 +28,3 @@ module CustomFieldsPlugin
 		end
 	end
 end
-
-Redmine::FieldFormat::UserFormat.send(:include, CustomFieldsPlugin::Patches::UserFormatPatch)
