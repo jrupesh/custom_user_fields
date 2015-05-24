@@ -1,5 +1,4 @@
 require 'redmine'
-require 'custom_fields_plugin/patches/user_format_patch'
 require_dependency 'custom_field'
 
 ActionDispatch::Callbacks.to_prepare do
@@ -15,6 +14,7 @@ Redmine::Plugin.register :custom_user_fields do
   requires_redmine :version_or_higher => '3.0.0'
 
   Rails.configuration.to_prepare do
+    Issue.send(:include, CustomFieldsPlugin::Patches::IssuePatch)
     CustomField.send(:include, CustomFieldsPlugin::Patches::CustomFieldPatch)
     Redmine::FieldFormat::UserFormat.send(:include, CustomFieldsPlugin::Patches::UserFormatPatch)
   end

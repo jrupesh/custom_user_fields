@@ -6,4 +6,10 @@
 
 The custom field can be defined by either of the above options.
 
+* Add custom filed values to be computed based on a formula or populating the MAX of a child related issues.
+
+* The formula can be user defined.
+
+* TO UPDATE : The settings and usage details.
+
 ----------

@@ -4,3 +4,8 @@ en:
   label_group_of: Group of
   user_role_group_option: Options- Select any one of the below - Either "Role" or "Group".
 
+  label_auto_compute: Is Computed Field?
+  label_formula: Define Forumla
+  label_formula_tracker: Select tracker to apply formula
+  label_formula_relation: Auto update issue of relation.
+
